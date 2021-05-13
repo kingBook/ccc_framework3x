@@ -6,12 +6,11 @@
     "_native": "",
     "scene": {
       "__id__": 1
-    },
-    "asyncLoadAssets": false
+    }
   },
   {
     "__type__": "cc.Scene",
-    "_name": "",
+    "_name": "main",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -80,7 +79,7 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "_language": 0,
+    "_language": 1,
     "_enablePhysics2D": false,
     "_gravity2D": {
       "__type__": "cc.Vec2",
@@ -148,6 +147,10 @@
     "_autoAdapt": true,
     "_pcf": 0,
     "_bias": 0.00001,
+    "_packing": false,
+    "_linear": true,
+    "_selfShadow": false,
+    "_normalBias": 0,
     "_near": 1,
     "_far": 30,
     "_aspect": 1,
