@@ -1,5 +1,6 @@
 
 import { _decorator, Component, game, Enum, Vec2, log, sys, AudioSource} from 'cc';
+import { AudioSourcePlus } from '../enginePlus/audio/AudioSourcePlus';
 import BaseBehaviour from './BaseBehaviour';
 import BaseGame from './BaseGame';
 import PlayerPrefs from './PlayerPrefs';
@@ -18,6 +19,12 @@ export default class App extends BaseBehaviour{
     private static s_instance:App;
     public static get instance():App{
         return App.s_instance;
+    }
+    
+    /** 设置静音 */
+    public static setMute(value:boolean):void{
+        AudioSourcePlus.musicMute=value;
+        AudioSourcePlus.effectsMute=value;
     }
     
     private static onSetEnablePhysics2D(oldValue:boolean):void{
@@ -78,11 +85,11 @@ export default class App extends BaseBehaviour{
     /*public get isMute():boolean{
         return cc.audioEngine.getMusicVolume()==0 && cc.audioEngine.getEffectsVolume()==0;
     }*/
-    /** 背景音乐音量与cc.audioEngine.getMusicVolume()一样 */
+    /** 背景音乐音量 */
     public get musicVolume():number{
         return this._musicVolume;
     }
-    /** 音效音量与cc.audioEngine.getEffectsVolume()一样 */
+    /** 音效音量 */
     public get effectsVolume():number{
         return this._effectsVolume;
     }
@@ -163,12 +170,6 @@ export default class App extends BaseBehaviour{
         else cc.game.resume();
         //发送暂停或恢复事件
         this.node.emit(App.PAUSE_OR_RESUME);*/
-    }
-    
-    /** 设置静音 */
-    public setMute(isMute:boolean):void{
-        /*cc.audioEngine.setMusicVolume(isMute?0:this._musicVolume);
-        cc.audioEngine.setEffectsVolume(isMute?0:this._effectsVolume);*/
     }
     
     /** 返回指定索引的游戏实例 */
