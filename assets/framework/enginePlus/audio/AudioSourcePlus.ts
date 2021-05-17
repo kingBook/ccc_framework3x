@@ -27,7 +27,7 @@ export class AudioSourcePlus extends AudioSource {
             }
         }
     }
-
+    
     static get musicVolumeScale() {
         return AudioSourcePlus._musicVolumeScale;
     }
@@ -49,7 +49,7 @@ export class AudioSourcePlus extends AudioSource {
             }
         }
     }
-
+    
     static get effectsVolumeScale() {
         return this._effectsVolumeScale;
     }
