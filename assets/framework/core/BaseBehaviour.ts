@@ -1,5 +1,5 @@
 ﻿import { _decorator, Component } from "cc";
-const { ccclass, property } = _decorator;
+const { ccclass } = _decorator;
 
 /** 所有脚本组件的基类 */
 @ccclass('BaseBehaviour')

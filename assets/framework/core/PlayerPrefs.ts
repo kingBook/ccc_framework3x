@@ -15,7 +15,8 @@ export default class PlayerPrefs {
 
     /** 返回偏好设置文件中与 key 对应的值（如果存在）。如果不存在，则返回 defaultValue。 */
     public static getFloat(key: string, defaultValue: number = 0): number {
-        let value: string = sys.localStorage.getItem(key);
+        let value: string | null = sys.localStorage.getItem(key);
+        if (value === null) return defaultValue;
         let n: number = parseFloat(value);
         return isNaN(n) ? defaultValue : n;
     }
@@ -23,14 +24,15 @@ export default class PlayerPrefs {
     /** 返回偏好设置文件中与 key 对应的值（如果存在）。如果不存在，则返回 defaultValue。 */
     public static getInt(key: string, defaultValue: number = 0): number {
         if (defaultValue !== (defaultValue | 0)) warn("defaultValue:" + defaultValue + "不是整数将自动取整");
-        let value: string = sys.localStorage.getItem(key);
+        let value: string | null = sys.localStorage.getItem(key);
+        if (value === null) return defaultValue | 0;
         let n: number = parseInt(value);
         return isNaN(n) ? (defaultValue | 0) : (n | 0);
     }
 
     /** 返回偏好设置文件中与 key 对应的值（如果存在）。如果不存在，则返回 defaultValue。 */
     public static getString(key: string, defaultValue: string = ""): string {
-        let value: string = sys.localStorage.getItem(key);
+        let value: string | null = sys.localStorage.getItem(key);
         if (value) return value;
         return defaultValue;
     }
@@ -43,14 +45,14 @@ export default class PlayerPrefs {
 
     /** 设置由 key 标识的偏好的值。 */
     public static setFloat(key: string, value: number): void {
-        sys.localStorage.setItem(key, value);
+        sys.localStorage.setItem(key, value.toString());
     }
 
     /** 设置由 key 标识的偏好的值。 */
     public static setInt(key: string, value: number): void {
         if (value !== (value | 0)) warn("value:" + value + "不是整数将自动取整");
         value = value | 0;
-        sys.localStorage.setItem(key, value);
+        sys.localStorage.setItem(key, value.toString());
     }
 
     /** 设置由 key 标识的偏好的值。 */
