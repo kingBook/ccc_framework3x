@@ -74,33 +74,9 @@ export default class App extends BaseBehaviour {
     public get gameCount(): number {
         return this._games.length;
     }
+    
 
-    protected onLoad(): void {
-        super.onLoad();
-        App.s_instance = this;
-        this.addOpenCount();
-
-        if (this._language == Language.AUTO) {
-            this.initLanguage();
-        }
-
-        //标记为“常驻节点”，切换场景时不自动销毁
-        game.addPersistRootNode(this.node);
-    }
-
-    private addOpenCount(): void {
-        const key: string = "appOpenCount";
-        this._openCount = PlayerPrefs.getInt(key, 0) + 1;
-        PlayerPrefs.setInt(key, this._openCount);
-    }
-
-    private initLanguage(): void {
-        let isCN: boolean = sys.language == sys.Language.CHINESE;
-        this._language = isCN ? Language.CN : Language.EN;
-        //发送改变语言事件
-        this.node.emit(App.CHANGED_LANGUAGE, this._language);
-    }
-
+    
     /** 设置应用暂停/恢复 */
     public setPause(isPause: boolean): void {
         if (this._isPause == isPause) return;
@@ -116,6 +92,33 @@ export default class App extends BaseBehaviour {
     /** 返回指定索引的游戏实例 */
     public getGame<T extends BaseGame>(index: number = 0): T {
         return <T>this._games[index];
+    }
+    
+    private addOpenCount(): void {
+        const key: string = "appOpenCount";
+        this._openCount = PlayerPrefs.getInt(key, 0) + 1;
+        PlayerPrefs.setInt(key, this._openCount);
+    }
+
+    private initLanguage(): void {
+        let isCN: boolean = sys.language == sys.Language.CHINESE;
+        this._language = isCN ? Language.CN : Language.EN;
+        //发送改变语言事件
+        this.node.emit(App.CHANGED_LANGUAGE, this._language);
+    }
+    
+
+    protected onLoad(): void {
+        super.onLoad();
+        App.s_instance = this;
+        this.addOpenCount();
+
+        if (this._language == Language.AUTO) {
+            this.initLanguage();
+        }
+
+        //标记为“常驻节点”，切换场景时不自动销毁
+        game.addPersistRootNode(this.node);
     }
 
     protected onDestroy(): void {

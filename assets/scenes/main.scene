@@ -776,7 +776,7 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "_language": 1,
+    "_language": 0,
     "_physics2DManager": {
       "__id__": 27
     },
