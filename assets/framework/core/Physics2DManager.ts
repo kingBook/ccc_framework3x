@@ -4,7 +4,7 @@ import { Physics2DDebugDrag } from './Physics2DDebugDrag';
 const { ccclass, property } = _decorator;
 
 @ccclass('Physics2DManager')
-export class Physics2DManager extends BaseBehaviour {
+export class Physics2DManager extends Component {
 
     @property({ displayName: "Gravity", visible: true })
     private _gravity: Vec2 = new Vec2(0, -320);
@@ -30,7 +30,6 @@ export class Physics2DManager extends BaseBehaviour {
     }
     
     protected onLoad():void {
-        super.onLoad();
         this.initPhysics2D();
     }
 }

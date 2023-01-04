@@ -1,5 +1,5 @@
 
-import { _decorator, Component, game, Enum, Vec2, log, sys, AudioSource } from 'cc';
+import { _decorator, Component, game, Enum, Vec2, log, sys, AudioSource, director } from 'cc';
 import { AudioSourcePlus } from '../enginePlus/audio/AudioSourcePlus';
 import { AudioManager } from './AudioManager';
 import BaseBehaviour from './BaseBehaviour';
@@ -11,7 +11,7 @@ const { ccclass, property } = _decorator;
 export enum Language { AUTO, CN, EN };
 
 @ccclass('App')
-export default class App extends BaseBehaviour {
+export default class App extends Component {
 
     /** 改变语言事件，回调函数格式：(language:Language):void */
     public static readonly CHANGED_LANGUAGE: string = "changedLanguage";
@@ -109,7 +109,6 @@ export default class App extends BaseBehaviour {
     
 
     protected onLoad(): void {
-        super.onLoad();
         App.s_instance = this;
         this.addOpenCount();
 
@@ -118,10 +117,10 @@ export default class App extends BaseBehaviour {
         }
 
         //标记为“常驻节点”，切换场景时不自动销毁
-        game.addPersistRootNode(this.node);
+        director.addPersistRootNode(this.node);
     }
 
     protected onDestroy(): void {
-        super.onDestroy();
+        
     }
 }

@@ -1,10 +1,14 @@
 
-import { _decorator, Component, Node, log } from 'cc';
+import { _decorator, Component, Node, log, AudioClip, Vec3 } from 'cc';
+import App from '../framework/core/App';
 import { AudioSourcePlus } from '../framework/enginePlus/audio/AudioSourcePlus';
 const { ccclass, property } = _decorator;
 
 @ccclass('Test')
 export class Test extends Component {
+    
+    @property({type:AudioClip})
+    public clip:AudioClip|null=null;
     // [1]
     // dummy = '';
 
@@ -17,14 +21,17 @@ export class Test extends Component {
     start() {
         let audioSourcePlus=this.node.getComponent(AudioSourcePlus);
         this.node.on(Node.EventType.MOUSE_DOWN, (event: any) => {
-            this._count++;
+            /*this._count++;
             if (this._count % 2 === 0) {
-                AudioSourcePlus.globalMute=true;
-                log(true);
+                AudioSourcePlus.musicMute=true;
+                log(AudioSourcePlus.musicMute);
             }else{
-                AudioSourcePlus.globalMute=false;
-                log(false);
-            }
+                AudioSourcePlus.musicMute=false;
+                log(AudioSourcePlus.musicMute);
+            }*/
+            
+            App.instance.audioManager?.playEffect(this.clip,Vec3.ZERO,1);
+           // App.instance.audioManager?.setEffectsMute(true);
         });
     }
 

@@ -1,6 +1,9 @@
 
-import { _decorator, AudioSource, clamp, director, isValid } from 'cc';
+import { _decorator, AudioSource, clamp, director, isValid, clamp01 } from 'cc';
 const { ccclass, property } = _decorator;
+
+
+// AudioSource源码地址：https://github.com/cocos/cocos-engine/blob/develop/cocos/audio/audio-source.ts
 
 @ccclass('AudioSourcePlus')
 export class AudioSourcePlus extends AudioSource {
@@ -11,7 +14,7 @@ export class AudioSourcePlus extends AudioSource {
     private static _effectsMute = false;
 
     static set musicVolumeScale(val: number) {
-        AudioSourcePlus._musicVolumeScale = val;
+        AudioSourcePlus._musicVolumeScale = clamp01(val);
 
         let currentScene = director.getScene();
         if (currentScene) {
@@ -27,13 +30,13 @@ export class AudioSourcePlus extends AudioSource {
             }
         }
     }
-    
+
     static get musicVolumeScale() {
         return AudioSourcePlus._musicVolumeScale;
     }
 
     static set effectsVolumeScale(val: number) {
-        AudioSourcePlus._effectsVolumeScale = val;
+        AudioSourcePlus._effectsVolumeScale = clamp01(val);
 
         let currentScene = director.getScene();
         if (currentScene) {
@@ -49,7 +52,7 @@ export class AudioSourcePlus extends AudioSource {
             }
         }
     }
-    
+
     static get effectsVolumeScale() {
         return this._effectsVolumeScale;
     }
@@ -63,8 +66,8 @@ export class AudioSourcePlus extends AudioSource {
             if (audioSources) {
                 for (let i = 0, l = audioSources.length; i < l; i++) {
                     let audioSource = audioSources[i];
-                    if(!audioSource || !isValid(audioSource,true)) continue;
-                    if(!audioSource.loop) continue;
+                    if (!audioSource || !isValid(audioSource, true)) continue;
+                    if (!audioSource.loop) continue;
                     if (!audioSource._player) continue;
                     audioSource._player.volume = AudioSourcePlus.musicMute ? 0 : audioSource.volume * AudioSourcePlus.musicVolumeScale;
                 }
@@ -85,8 +88,8 @@ export class AudioSourcePlus extends AudioSource {
             if (audioSources) {
                 for (let i = 0, l = audioSources.length; i < l; i++) {
                     let audioSource = audioSources[i];
-                    if(!audioSource || !isValid(audioSource,true)) continue;
-                    if(audioSource.loop) continue;
+                    if (!audioSource || !isValid(audioSource, true)) continue;
+                    if (audioSource.loop) continue;
                     if (!audioSource._player) continue;
                     audioSource._player.volume = AudioSourcePlus.effectsMute ? 0 : audioSource.volume * AudioSourcePlus.effectsVolumeScale;
                 }
@@ -114,11 +117,11 @@ export class AudioSourcePlus extends AudioSource {
         if (Number.isNaN(val)) { console.warn('illegal audio volume!'); return; }
         val = clamp(val, 0, 1);
         this._volume = val;
-        
+
         if (this._player) {
-            if(this._loop){
+            if (this._loop) {
                 this._player.volume = AudioSourcePlus.musicMute ? 0 : val * AudioSourcePlus.musicVolumeScale;
-            }else{
+            } else {
                 this._player.volume = AudioSourcePlus.effectsMute ? 0 : val * AudioSourcePlus.effectsVolumeScale;
             }
         }
@@ -135,17 +138,18 @@ export class AudioSourcePlus extends AudioSource {
         self._player.seek(self._cachedCurrentTime).then(() => {
             if (self._player) {
                 self._player.loop = self._loop;
-                
-                if(self._loop){
+
+                if (self._loop) {
                     self._player.volume = AudioSourcePlus.musicMute ? 0 : self._volume * AudioSourcePlus.musicVolumeScale;
-                }else{
+                } else {
                     self._player.volume = AudioSourcePlus.effectsMute ? 0 : self._volume * AudioSourcePlus.effectsVolumeScale;
                 }
-                
+
                 self._operationsBeforeLoading.forEach((opName: any) => { self[opName]?.(); });
                 self._operationsBeforeLoading.length = 0;
             }
         }).catch(() => { });
     }
+
 
 }

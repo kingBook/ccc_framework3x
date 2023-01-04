@@ -1,9 +1,9 @@
 {
+  "creator": {
+    "version": "3.6.2"
+  },
   "name": "ccc_framework3x",
   "type": "3d",
   "uuid": "1ba1cfc7-7bdc-489c-8bfd-8cab814a9c8c",
-  "version": "3.5.0",
-  "creator": {
-    "version": "3.5.0"
-  }
+  "version": "3.6.2"
 }
