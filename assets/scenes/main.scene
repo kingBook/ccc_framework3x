@@ -24,11 +24,11 @@
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 31
+      "__id__": 35
     },
     "autoReleaseAssets": false,
     "_globals": {
-      "__id__": 32
+      "__id__": 36
     },
     "_id": "8c9f0387-4567-4b9b-9c34-6ba3a3a74dc4"
   },
@@ -619,12 +619,18 @@
       },
       {
         "__id__": 28
+      },
+      {
+        "__id__": 30
+      },
+      {
+        "__id__": 32
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 30
+        "__id__": 34
       }
     ],
     "_prefab": null,
@@ -658,7 +664,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Physics2DManager",
+    "_name": "SceneLoader",
     "_objFlags": 0,
     "_parent": {
       "__id__": 25
@@ -697,10 +703,10 @@
       "y": 0,
       "z": 0
     },
-    "_id": "4d8bPjMfdMTILV9kJsMs3q"
+    "_id": "eaKmAudE5A1b3XVjzqokNP"
   },
   {
-    "__type__": "22810me9DVEfYM+QZP1d8Fk",
+    "__type__": "98d5bA9sZdCbbxYXKKDOoyn",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -708,18 +714,12 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "_gravity": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": -320
-    },
-    "_enableDebugDraw": true,
-    "_enableDebugDrag": true,
-    "_id": "861jhsN1dAyJYh0syFgz0a"
+    "_sceneProgressBar": null,
+    "_id": "1dd0h20WZHiL8odsbXaCVQ"
   },
   {
     "__type__": "cc.Node",
-    "_name": "AudioManager",
+    "_name": "Physics2DManager",
     "_objFlags": 0,
     "_parent": {
       "__id__": 25
@@ -758,10 +758,10 @@
       "y": 0,
       "z": 0
     },
-    "_id": "62hhYNc0JEhrKiXETZOMqx"
+    "_id": "4d8bPjMfdMTILV9kJsMs3q"
   },
   {
-    "__type__": "09753d+B01D+IXCi7O4z+hu",
+    "__type__": "22810me9DVEfYM+QZP1d8Fk",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -769,7 +769,122 @@
     },
     "_enabled": true,
     "__prefab": null,
+    "_gravity": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": -320
+    },
+    "_enableDebugDraw": true,
+    "_enableDebugDrag": true,
+    "_id": "861jhsN1dAyJYh0syFgz0a"
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "AudioManager",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 25
+    },
+    "_children": [],
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 31
+      }
+    ],
+    "_prefab": null,
+    "_lpos": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_lrot": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
+    "_lscale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_layer": 1073741824,
+    "_euler": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_id": "62hhYNc0JEhrKiXETZOMqx"
+  },
+  {
+    "__type__": "09753d+B01D+IXCi7O4z+hu",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 30
+    },
+    "_enabled": true,
+    "__prefab": null,
     "_id": "e6+BxsN/ZEX6ExLIxCfYTC"
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "Game",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 25
+    },
+    "_children": [],
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 33
+      }
+    ],
+    "_prefab": null,
+    "_lpos": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_lrot": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
+    "_lscale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_layer": 1073741824,
+    "_euler": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_id": "4cpu0/9Z1BEp607ZjThEVx"
+  },
+  {
+    "__type__": "5635e7VA1dGH6ChxnMFaeSB",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 32
+    },
+    "_enabled": true,
+    "__prefab": null,
+    "_id": "b3cF6GKKNB/rMM2iH+QCu7"
   },
   {
     "__type__": "f3830mLjepGYp/ndpnWkQZ1",
@@ -782,12 +897,19 @@
     "__prefab": null,
     "_language": 0,
     "_physics2DManager": {
-      "__id__": 27
-    },
-    "_audioManager": {
       "__id__": 29
     },
-    "_games": [],
+    "_audioManager": {
+      "__id__": 31
+    },
+    "_sceneLoader": {
+      "__id__": 27
+    },
+    "_games": [
+      {
+        "__id__": 33
+      }
+    ],
     "_id": "43kfPdATNJxb/egsxyAHTh"
   },
   {
@@ -797,19 +919,19 @@
   {
     "__type__": "cc.SceneGlobals",
     "ambient": {
-      "__id__": 33
+      "__id__": 37
     },
     "shadows": {
-      "__id__": 34
+      "__id__": 38
     },
     "_skybox": {
-      "__id__": 35
+      "__id__": 39
     },
     "fog": {
-      "__id__": 36
+      "__id__": 40
     },
     "octree": {
-      "__id__": 37
+      "__id__": 41
     }
   },
   {

@@ -1,5 +1,4 @@
 import { _decorator, Component, Node, Vec2, PhysicsSystem2D, EPhysics2DDrawFlags } from 'cc';
-import BaseBehaviour from './BaseBehaviour';
 import { Physics2DDebugDrag } from './Physics2DDebugDrag';
 const { ccclass, property } = _decorator;
 

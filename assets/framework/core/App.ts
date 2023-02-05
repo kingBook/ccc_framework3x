@@ -1,17 +1,16 @@
 
-import { _decorator, Component, game, Enum, Vec2, log, sys, AudioSource, director } from 'cc';
-import { AudioSourcePlus } from '../enginePlus/audio/AudioSourcePlus';
+import { _decorator, Component, game, Enum, sys, director } from 'cc';
 import { AudioManager } from './AudioManager';
-import BaseBehaviour from './BaseBehaviour';
-import BaseGame from './BaseGame';
+import { BaseGame } from './BaseGame';
 import { Physics2DManager } from './Physics2DManager';
-import PlayerPrefs from './PlayerPrefs';
+import { PlayerPrefs } from './PlayerPrefs';
+import { SceneLoader } from './SceneLoader';
 const { ccclass, property } = _decorator;
 
 export enum Language { AUTO, CN, EN };
 
 @ccclass('App')
-export default class App extends Component {
+export class App extends Component {
 
     /** 改变语言事件，回调函数格式：(language:Language):void */
     public static readonly CHANGED_LANGUAGE: string = "changedLanguage";
@@ -29,8 +28,8 @@ export default class App extends Component {
     private _physics2DManager: Physics2DManager | null = null;
     @property({ type: AudioManager, visible: true })
     private _audioManager: AudioManager | null = null;
-    //@property({type:SceneLoader,visible:true})
-    //private _sceneLoader:SceneLoader=null;
+    @property({ type: SceneLoader, visible: true })
+    private _sceneLoader: SceneLoader | null = null;
     //@property({type:SubpackageLoader,visible:true})
     //private _subpackageLoader:SubpackageLoader=null;
     @property({ type: [BaseGame], visible: true })
@@ -52,9 +51,9 @@ export default class App extends Component {
         return this._audioManager;
     }
     /** 场景加载器 */
-    /*public get sceneLoader():SceneLoader{
+    public get sceneLoader(): SceneLoader | null {
         return this._sceneLoader;
-    }*/
+    }
     /** 分包加载器 */
     /*public get subpackageLoader():SubpackageLoader{
         return this._subpackageLoader;
@@ -74,9 +73,9 @@ export default class App extends Component {
     public get gameCount(): number {
         return this._games.length;
     }
-    
 
-    
+
+
     /** 设置应用暂停/恢复 */
     public setPause(isPause: boolean): void {
         if (this._isPause == isPause) return;
@@ -93,7 +92,7 @@ export default class App extends Component {
     public getGame<T extends BaseGame>(index: number = 0): T {
         return <T>this._games[index];
     }
-    
+
     private addOpenCount(): void {
         const key: string = "appOpenCount";
         this._openCount = PlayerPrefs.getInt(key, 0) + 1;
@@ -106,7 +105,7 @@ export default class App extends Component {
         //发送改变语言事件
         this.node.emit(App.CHANGED_LANGUAGE, this._language);
     }
-    
+
 
     protected onLoad(): void {
         App.s_instance = this;
@@ -121,6 +120,6 @@ export default class App extends Component {
     }
 
     protected onDestroy(): void {
-        
+
     }
 }

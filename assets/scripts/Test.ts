@@ -1,6 +1,6 @@
 
 import { _decorator, Component, Node, log, AudioClip, Vec3 } from 'cc';
-import App from '../framework/core/App';
+import { App } from '../framework/core/App';
 import { AudioSourcePlus } from '../framework/enginePlus/audio/AudioSourcePlus';
 const { ccclass, property } = _decorator;
 

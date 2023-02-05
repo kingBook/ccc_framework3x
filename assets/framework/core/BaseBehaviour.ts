@@ -3,7 +3,7 @@ const { ccclass } = _decorator;
 
 /** 所有脚本组件的基类 */
 @ccclass('BaseBehaviour')
-export default abstract class BaseBehaviour extends Component {
+export abstract class BaseBehaviour extends Component {
 
     /** 当该组件被第一次添加到节点上或用户点击了它的 Reset 菜单时调用（只会在编辑器下调用） */
     /*protected resetInEditor():void{

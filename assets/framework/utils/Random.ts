@@ -1,4 +1,4 @@
-export default class Random {
+export class Random {
 
     /** 返回 [0,1) 的随机浮点数 */
     public static get value(): number {

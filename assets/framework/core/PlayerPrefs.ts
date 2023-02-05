@@ -1,7 +1,7 @@
 ﻿import { sys, warn } from "cc";
 
 /** 在游戏会话之间存储和访问玩家偏好。 */
-export default class PlayerPrefs {
+export class PlayerPrefs {
 
     /** 从偏好中删除所有键和值。请谨慎使用。 */
     public static deleteAll(): void {
