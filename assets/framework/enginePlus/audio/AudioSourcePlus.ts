@@ -3,7 +3,7 @@ import { _decorator, AudioSource, clamp, director, isValid, clamp01 } from 'cc';
 const { ccclass, property } = _decorator;
 
 
-// AudioSource源码地址：https://github.com/cocos/cocos-engine/blob/develop/cocos/audio/audio-source.ts
+// AudioSource源码地址：https://github.com/cocos/cocos-engine/blob/v3.8.5/cocos/audio/audio-source.ts
 
 @ccclass('AudioSourcePlus')
 export class AudioSourcePlus extends AudioSource {
@@ -116,7 +116,7 @@ export class AudioSourcePlus extends AudioSource {
     set volume(val: number) {
         if (Number.isNaN(val)) { console.warn('illegal audio volume!'); return; }
         val = clamp(val, 0, 1);
-        this._volume = val;
+        //this._volume = val;
 
         if (this._player) {
             if (this._loop) {
@@ -124,6 +124,9 @@ export class AudioSourcePlus extends AudioSource {
             } else {
                 this._player.volume = AudioSourcePlus.effectsMute ? 0 : val * AudioSourcePlus.effectsVolumeScale;
             }
+            this._volume = this._player.volume;
+        } else {
+            this._volume = val;
         }
     }
 
@@ -134,21 +137,26 @@ export class AudioSourcePlus extends AudioSource {
 
     protected _syncStates() {
         let self: any = this;
-        if (!self._player) { return; }
-        self._player.seek(self._cachedCurrentTime).then(() => {
-            if (self._player) {
-                self._player.loop = self._loop;
-
-                if (self._loop) {
-                    self._player.volume = AudioSourcePlus.musicMute ? 0 : self._volume * AudioSourcePlus.musicVolumeScale;
-                } else {
-                    self._player.volume = AudioSourcePlus.effectsMute ? 0 : self._volume * AudioSourcePlus.effectsVolumeScale;
-                }
-
-                self._operationsBeforeLoading.forEach((opName: any) => { self[opName]?.(); });
-                self._operationsBeforeLoading.length = 0;
+        if (self._player) { 
+            self._player.loop = self._loop;
+            if (self._loop) {
+                self._player.volume = AudioSourcePlus.musicMute ? 0 : self._volume * AudioSourcePlus.musicVolumeScale;
+            } else {
+                self._player.volume = AudioSourcePlus.effectsMute ? 0 : self._volume * AudioSourcePlus.effectsVolumeScale;
             }
-        }).catch(() => { });
+            self._operationsBeforeLoading.forEach((opInfo:any): void => {
+                if (opInfo.op === 'seek') {
+                    self._cachedCurrentTime = (opInfo.params && opInfo.params[0]) as number;
+                    if (self._player) {
+                        // eslint-disable-next-line @typescript-eslint/no-empty-function
+                        self._player.seek(self._cachedCurrentTime).catch((e:any): void => {});
+                    }
+                } else {
+                    self[opInfo.op]?.();
+                }
+            });
+            self._operationsBeforeLoading.length = 0;
+        }
     }
 
 
