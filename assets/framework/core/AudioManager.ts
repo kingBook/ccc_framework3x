@@ -1,10 +1,11 @@
-import { _decorator, Component, AudioClip, Node, Vec3, director, clamp01 } from 'cc';
+import { _decorator, Component, AudioClip, Node, Vec3, director, clamp01, AudioSource } from 'cc';
 import { AudioSourcePlus } from '../enginePlus/audio/AudioSourcePlus';
 import { PlayerPrefs } from './PlayerPrefs';
 const { ccclass, property } = _decorator;
 
 @ccclass('AudioManager')
 export class AudioManager extends Component {
+
 
     private static getLocalMusicMute(): boolean {
         return PlayerPrefs.getInt("AudioManager_musicMute", 0) > 0;
