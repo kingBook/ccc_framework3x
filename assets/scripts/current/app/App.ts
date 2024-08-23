@@ -29,17 +29,17 @@ export class App extends Component {
     @property({ type: Enum(Language), visible: true })
     private _language: Language = Language.AUTO;
     @property({ type: Physics2DManager, visible: true })
-    private _physics2DManager!: Physics2DManager;
+    private _physics2DManager: Physics2DManager;
     @property({ type: AudioManager, visible: true })
-    private _audioManager!: AudioManager;
+    private _audioManager: AudioManager;
     @property({ type: SceneLoader, visible: true })
-    private _sceneLoader!: SceneLoader;
-    @property({type:SubpackageLoader,visible:true})
-    private _subpackageLoader!:SubpackageLoader;
+    private _sceneLoader: SceneLoader;
+    @property({ type: SubpackageLoader, visible: true })
+    private _subpackageLoader: SubpackageLoader;
     private _openCount: number = 0;
     private _isPause: boolean = false;
-    private _fsm!: AppFsm;
-    private _global!:AppGlobalVariables;
+    private _fsm: AppFsm;
+    private _global: AppGlobalVariables;
 
     /** 应用的语言 CN | EN */
     public get language(): Language { return this._language; }
@@ -47,10 +47,8 @@ export class App extends Component {
     public get audioManager(): AudioManager { return this._audioManager; }
     /** 场景加载器 */
     public get sceneLoader(): SceneLoader { return this._sceneLoader; }
-    /** 分包加载器 */
-    /*public get subpackageLoader():SubpackageLoader{
-        return this._subpackageLoader;
-    }*/
+    /** 子包加载器 */
+    public get subpackageLoader(): SubpackageLoader { return this._subpackageLoader; }
     /** 应用打开的次数 */
     public get openCount(): number { return this._openCount; }
     /** 应用是否已暂停 */
@@ -101,6 +99,6 @@ export class App extends Component {
     }
 
     protected onDestroy(): void {
-
+        App.s_instance = undefined;
     }
 }

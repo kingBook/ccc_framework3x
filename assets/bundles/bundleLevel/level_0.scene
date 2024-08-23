@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.SceneAsset",
-    "_name": "level_1",
+    "_name": "level_0",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_native": "",
@@ -11,7 +11,7 @@
   },
   {
     "__type__": "cc.Scene",
-    "_name": "level_1",
+    "_name": "level_0",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": null,
@@ -60,7 +60,7 @@
     "_globals": {
       "__id__": 16
     },
-    "_id": "f754ee0d-5dbb-4088-93e5-5621732257fc"
+    "_id": "166d6ba1-b2d4-4d09-a178-5b727f0b066a"
   },
   {
     "__type__": "cc.Node",
@@ -305,7 +305,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "48bhyLyQVDmrv4VA37R9m7"
+    "_id": "d1Tfco2+1MMp2zfwZhKgu9"
   },
   {
     "__type__": "cc.Node",
@@ -350,7 +350,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "4cRgPfR1tIC7V0onIQRlZ0"
+    "_id": "39jV47EA5LVJeJNNrZnD2u"
   },
   {
     "__type__": "cc.Camera",
@@ -396,7 +396,7 @@
     "_usePostProcess": false,
     "_cameraType": -1,
     "_trackingType": 0,
-    "_id": "e3jDqzYXFOzaMIwbaDjQ6e"
+    "_id": "d0RyLQ1B5InK8mVSTynFRU"
   },
   {
     "__type__": "cc.Node",
@@ -444,7 +444,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "3cHLpYO6RE8YBQrhVBm3rl"
+    "_id": "0d+9PMSwNNw5MBt0JFhkFR"
   },
   {
     "__type__": "cc.UITransform",
@@ -466,7 +466,7 @@
       "x": 0.5,
       "y": 0.5
     },
-    "_id": "3fqFVl0E9J/J+mWl/P+oRt"
+    "_id": "adWkTVVglEcLU1OoFP5Rwp"
   },
   {
     "__type__": "cc.RichText",
@@ -479,7 +479,7 @@
     "_enabled": true,
     "__prefab": null,
     "_lineHeight": 40,
-    "_string": "Level1",
+    "_string": "Level0",
     "_horizontalAlign": 0,
     "_verticalAlign": 0,
     "_fontSize": 40,
@@ -498,7 +498,7 @@
     "_cacheMode": 0,
     "_imageAtlas": null,
     "_handleTouchEvent": true,
-    "_id": "39k7WLHMNJfJUbs7KkncZo"
+    "_id": "b53gTCNPtNkK+PZe3O7YT3"
   },
   {
     "__type__": "cc.UITransform",
@@ -520,7 +520,7 @@
       "x": 0.5,
       "y": 0.5
     },
-    "_id": "d2G2gQYZtG/4o3ilK8Q86C"
+    "_id": "4fec7WzcpJbY8xDc5nn4a0"
   },
   {
     "__type__": "cc.Canvas",
@@ -536,7 +536,7 @@
       "__id__": 9
     },
     "_alignCanvasWithScreen": true,
-    "_id": "61PD86S8lMupH1VHYYKH1q"
+    "_id": "53S9xukKNMx4wXTaVuA3sH"
   },
   {
     "__type__": "cc.Widget",
@@ -566,7 +566,7 @@
     "_originalHeight": 0,
     "_alignMode": 2,
     "_lockFlags": 0,
-    "_id": "46i9k5Mp9EZpXJqaa8DExM"
+    "_id": "bb8nGLDVNOyLRsd8ZC0h40"
   },
   {
     "__type__": "cc.SceneGlobals",

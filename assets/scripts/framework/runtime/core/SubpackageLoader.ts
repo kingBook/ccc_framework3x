@@ -6,19 +6,19 @@ const { ccclass, property } = _decorator;
 export class SubpackageLoader extends Component {
 
     @property({ type: SceneProgressBar, visible: true })
-    private _sceneProgressBar!: SceneProgressBar;
+    private _sceneProgressBar: SceneProgressBar;
 
     private _isLoading: boolean = false;
     private _frameCount: number = 0;
     private _virtualProgress: number = 0;//假的加载进度[0,0.9]
-    private _subpackageName!: string;
+    private _subpackageName: string;
 
     /**
      * 加载子包
      * @param subpackageName 子包名称
      * @param progressVisible 默认为 true，是否显示进度条
      * @param isDestroyCurrentSceneChildren 默认为 true，是否删除当前逻辑场景的所有非常驻节点
-     * @param completeCallback 加载完成时的回调函数，格式：(error:Error,bundle:cc.AssetManager.Bundle):void
+     * @param completeCallback 加载完成时的回调函数，格式：(error:Error,bundle:AssetManager.Bundle):void
      */
     public loadSubpackage(subpackageName: string, progressVisible: boolean = true, isDestroyCurrentSceneChildren: boolean = true, completeCallback?: (error: Error, bundle: AssetManager.Bundle) => void): void {
         if (isDestroyCurrentSceneChildren) this.destroyCurrentLogicSceneChildren(false);

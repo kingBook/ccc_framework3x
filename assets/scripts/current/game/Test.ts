@@ -8,7 +8,7 @@ const { ccclass, property } = _decorator;
 export class Test extends Component {
     
     @property({type:AudioClip})
-    public clip:AudioClip|null=null;
+    public clip:AudioClip;
     // [1]
     // dummy = '';
 

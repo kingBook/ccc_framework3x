@@ -11,11 +11,11 @@ export abstract class Fsm extends Component {
     protected _states: Map<string, IState> = new Map<string, IState>();
 
     /** 状态发生改变后的回调函数 */
-    protected _onStateChanged?: (old: State, current: State) => void;
-    protected _onStateChangedThis?: any;
-    protected _currentState!: IState;
+    protected _onStateChanged: (old: State, current: State) => void;
+    protected _onStateChangedThis: any;
+    protected _currentState: IState;
 
-    public get currentState(): IState | undefined {
+    public get currentState(): IState {
         return this._currentState;
     }
 
@@ -52,7 +52,7 @@ export abstract class Fsm extends Component {
      * @returns 
      */
     public changeStateTo<T extends State>(toState: new () => T, onChanged?: (old: State, current: State) => void, onChangedThis?: any): void {
-        let state = <IState>this._states.get(toState.prototype.constructor.name);
+        let state = this._states.get(toState.prototype.constructor.name);
         //if (this._currentState === state) return;
         let old = this._currentState;
         // 状态退出

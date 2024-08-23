@@ -5,10 +5,10 @@ const { ccclass, property } = _decorator;
 export class SceneProgressBar extends Component {
 
     @property({ type: ProgressBar, visible: true })
-    private _progressbar!: ProgressBar;
+    private _progressbar: ProgressBar;
 
     @property({ type: RichText, visible: true })
-    private _richText!: RichText;
+    private _richText: RichText;
 
     protected onEnable(): void {
         //当前节点不在Canvas内，每次激活重新计算大小和缩放

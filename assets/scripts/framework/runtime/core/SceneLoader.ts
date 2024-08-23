@@ -11,7 +11,7 @@ export class SceneLoader extends Component {
     private _frameCount: number = 0;
     private _isLoading: boolean = false;
     private _virtualProgress: number = 0;//假的加载进度[0,0.9]
-    private _sceneName!: string;
+    private _sceneName: string;
 
     /**
      * 通过场景名称进行加载场景。

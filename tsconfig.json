@@ -1,6 +1,12 @@
 {
   /* Base configuration. Do not edit this field. */
-  "extends": "./temp/tsconfig.cocos.json" 
-
+  "extends": "./temp/tsconfig.cocos.json",
+  
   /* Add your custom configuration here. */
+  "compilerOptions": {
+    "module": "ES2015",
+    "target": "ES2015",
+    "strict": false,
+    "strictNullChecks": false
+  }
 }
