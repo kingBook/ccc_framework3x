@@ -3,11 +3,9 @@ import { _decorator, Component, game, Enum, sys, director } from 'cc';
 import { Physics2DManager } from '../../framework/runtime/core/Physics2DManager';
 import { AudioManager } from '../../framework/runtime/core/AudioManager';
 import { SceneLoader } from '../../framework/runtime/core/SceneLoader';
-import { BaseGame } from '../../framework/runtime/core/BaseGame';
 import { PlayerPrefs } from '../../framework/runtime/core/PlayerPrefs';
 import { AppFsm } from './AppFsm';
 import { NodeUtil } from '../../framework/runtime/utils/NodeUtil';
-import { AppGlobalVariables } from './AppGlobalVariables';
 import { SubpackageLoader } from '../../framework/runtime/core/SubpackageLoader';
 const { ccclass, property } = _decorator;
 
@@ -39,11 +37,10 @@ export class App extends Component {
     private _openCount: number = 0;
     private _isPause: boolean = false;
     private _fsm: AppFsm;
-    private _global: AppGlobalVariables;
 
     /** 应用的语言 CN | EN */
     public get language(): Language { return this._language; }
-    public get physics2DManager(): Physics2DManager { return this._physics2DManager; }
+   // public get physics2DManager(): Physics2DManager { return this._physics2DManager; }
     public get audioManager(): AudioManager { return this._audioManager; }
     /** 场景加载器 */
     public get sceneLoader(): SceneLoader { return this._sceneLoader; }
@@ -54,7 +51,6 @@ export class App extends Component {
     /** 应用是否已暂停 */
     public get isPause(): boolean { return this._isPause; }
     public get fsm(): AppFsm { return this._fsm; }
-    public get global(): AppGlobalVariables { return this._global; }
 
 
     /** 设置应用暂停/恢复 */
@@ -86,7 +82,6 @@ export class App extends Component {
     protected onLoad(): void {
         App.s_instance = this;
         this._fsm = NodeUtil.addNodeComponent(AppFsm, this.node);
-        this._global = NodeUtil.addNodeComponent(AppGlobalVariables, this.node);
 
         this.addOpenCount();
 

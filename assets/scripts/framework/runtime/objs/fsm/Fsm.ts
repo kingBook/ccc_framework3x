@@ -53,6 +53,9 @@ export abstract class Fsm extends Component {
      */
     public changeStateTo<T extends State>(toState: new () => T, onChanged?: (old: State, current: State) => void, onChangedThis?: any): void {
         let state = this._states.get(toState.prototype.constructor.name);
+        if (state === undefined) {
+            throw new Error("状态 " + toState.prototype.constructor.name + " 未添加，使用 fsm.addState(StateClassName) 方法进行添加");
+        }
         //if (this._currentState === state) return;
         let old = this._currentState;
         // 状态退出

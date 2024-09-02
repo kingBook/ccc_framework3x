@@ -1,6 +1,6 @@
 import { _decorator, Component, AudioClip, Node, Vec3, director, clamp01, AudioSource } from 'cc';
 import { PlayerPrefs } from './PlayerPrefs';
-import { AudioSourcePlus } from '../enginePlus/audio/AudioSourcePlus';
+import { AudioSourcePlus } from '../extensions/audio/AudioSourcePlus';
 const { ccclass, property } = _decorator;
 
 @ccclass('AudioManager')

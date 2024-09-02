@@ -1,71 +1,65 @@
-import { _decorator, Component, Node, Vec2, MouseJoint2D, director } from 'cc';
+import { _decorator, Camera, Collider2D, Component, director, EventTouch, input, Input, PhysicsSystem2D, Vec2, Vec3 } from 'cc';
+import { Physics2DMouseJoint } from '../extensions/physics2D/Physics2DMouseJoint';
 const { ccclass, property } = _decorator;
-//const eventManager=cc["internal"]["eventManager"];
-//const EventListener=cc["EventListener"];
 
 @ccclass('Physics2DDebugDrag')
 export class Physics2DDebugDrag extends Component {
-    /*
-    private _touchListener:any;
-	private _touchWorldPos:Vec2=new Vec2();
-	private _mouseJoint:MouseJoint2D|null=null;
-	
-	protected start():void{
-		this._touchListener=EventListener.create({
-			event:EventListener.TOUCH_ONE_BY_ONE,
-			swallowTouches:false,
-			owner:this.node,
-			mask:null,
-			onTouchBegan:this.onTouchStart.bind(this),
-			onTouchMoved:this.onTouchMoved.bind(this),
-			onTouchEnded:this.onTouchEnded.bind(this),
-			onTouchCancelled:this.onTouchEnded.bind(this)
-		});
-		eventManager.addListener(this._touchListener,this.node);
+
+	private _tempV3 = new Vec3();
+	private _touchWorldPos: Vec2 = new Vec2();
+	private _mouseJoint: Physics2DMouseJoint;
+	private _cameraMain: Camera;
+
+	protected start(): void {
+		this._cameraMain = director.getScene().renderScene.cameras[0].node.getComponent(Camera);
+		input.on(Input.EventType.TOUCH_START, this.onTouchStart, this);
+		input.on(Input.EventType.TOUCH_MOVE, this.onTouchMoved, this);
+		input.on(Input.EventType.TOUCH_END, this.onTouchEnded, this);
+		input.on(Input.EventType.TOUCH_CANCEL, this.onTouchEnded, this);
 	}
-	
-	private onTouchStart(touch:cc.Touch,event:cc.Event.EventTouch):boolean{
-		let camera=cc.Camera.main;
-		if(camera){
-			camera.getScreenToWorldPoint(touch.getLocation(),this._touchWorldPos);
-		}else{
-			this._touchWorldPos.set(touch.getLocation());
+
+	private onTouchStart(event: EventTouch): boolean {
+		if (this._cameraMain) {
+			let touchScreenPos = new Vec3(event.getLocation().x, event.getLocation().y, 0);
+			this._cameraMain.screenToWorld(touchScreenPos, this._tempV3);
+			this._touchWorldPos.set(this._tempV3.x, this._tempV3.y);
+		} else {
+			this._touchWorldPos.set(event.getLocation());
 		}
-		let collider=cc.director.getPhysicsManager().testPoint(this._touchWorldPos);
-		if(collider){
-			this._mouseJoint=this.node.addComponent(PhysicsMouseJoint);
-			this._mouseJoint.isManual=true;
-			this._mouseJoint.target=this._touchWorldPos;
-			this._mouseJoint.connectedBody=collider.body;
-			this._mouseJoint.apply();
+		let collider: Collider2D = PhysicsSystem2D.instance.testPoint(this._touchWorldPos)[0];
+		if (collider) {
+			/*this._mouseJoint = this.node.addComponent(Physics2DMouseJoint);
+			this._mouseJoint.isManual = true;
+			this._mouseJoint.target = this._touchWorldPos;
+			this._mouseJoint.connectedBody = collider.body;
+			this._mouseJoint.apply();*/
 		}
 		//此处必须返回true（表示接触到了节点）,否则TOUCH_MOVE,TOUCH_END,TOUCH_CANCEL不触发。
 		return true;
 	}
-	
-	private onTouchMoved(touch:cc.Touch,event:cc.Event.EventTouch):void{
-		if(this._mouseJoint){
-			let camera=cc.Camera.main;
-			if(camera){
-				camera.getScreenToWorldPoint(touch.getLocation(),this._touchWorldPos);
-			}else{
-				this._touchWorldPos.set(touch.getLocation());
-			}
-			this._mouseJoint.target=this._touchWorldPos;
-		}
-	}
-	
-	private onTouchEnded(touch:cc.Touch,event:cc.Event.EventTouch):void{
-		if(this._mouseJoint){
-			this.node.removeComponent(this._mouseJoint);
-			this._mouseJoint=null;
-		}
-	}
-	
-	protected onDestroy():void{
-		super.onDestroy();
-		eventManager.removeListener(this._touchListener,this.node);
-	}*/
-    
-}
 
+	private onTouchMoved(event: EventTouch): void {
+		if (this._mouseJoint) {
+			if (this._cameraMain) {
+				let touchScreenPos = new Vec3(event.getLocation().x, event.getLocation().y, 0);
+				this._cameraMain.screenToWorld(touchScreenPos, this._tempV3);
+				this._touchWorldPos.set(this._tempV3.x, this._tempV3.y);
+			} else {
+				this._touchWorldPos.set(event.getLocation());
+			}
+			//this._mouseJoint.target = this._touchWorldPos;
+		}
+	}
+
+	private onTouchEnded(event: EventTouch): void {
+		if (this._mouseJoint) {
+			this._mouseJoint.destroy();
+			this._mouseJoint = null;
+		}
+	}
+
+	protected onDestroy(): void {
+		super.onDestroy();
+	}
+
+}

@@ -1,7 +1,7 @@
 
-import { _decorator, Component, Node, log, AudioClip, Vec3 } from 'cc';
-import { AudioSourcePlus } from '../../framework/runtime/enginePlus/audio/AudioSourcePlus';
+import { _decorator, Component, Node, log, AudioClip, Vec3, PhysicsSystem2D } from 'cc';
 import { App } from '../app/App';
+import { AudioSourcePlus } from '../../framework/runtime/extensions/audio/AudioSourcePlus';
 const { ccclass, property } = _decorator;
 
 @ccclass('Test')
@@ -19,6 +19,9 @@ export class Test extends Component {
     private _count: number = 0;
 
     start() {
+        console.log(PhysicsSystem2D.instance.physicsWorld.impl.m_gravity);
+        
+        
         let audioSourcePlus=this.node.getComponent(AudioSourcePlus);
         this.node.on(Node.EventType.TOUCH_START, (event: any) => {
             /*this._count++;
