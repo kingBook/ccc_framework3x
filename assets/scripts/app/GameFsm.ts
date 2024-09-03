@@ -1,7 +1,8 @@
 import { _decorator, Component, Node } from 'cc';
-import { Fsm } from '../../framework/runtime/objs/fsm/Fsm';
-import { StateGameTitle } from './gameStates/StateGameTitle';
-import { StateGameLevel } from './gameStates/StateGameLevel';
+import { Fsm } from '../framework/runtime/objs/fsm/Fsm';
+import { StateGameLevel } from './StateGameLevel';
+import { StateGameTitle } from './StateGameTitle';
+
 const { ccclass, property } = _decorator;
 
 @ccclass('GameFsm')

@@ -1,12 +1,14 @@
 
 import { _decorator, Component, game, Enum, sys, director } from 'cc';
-import { Physics2DManager } from '../../framework/runtime/core/Physics2DManager';
-import { AudioManager } from '../../framework/runtime/core/AudioManager';
-import { SceneLoader } from '../../framework/runtime/core/SceneLoader';
-import { PlayerPrefs } from '../../framework/runtime/core/PlayerPrefs';
+import { AudioManager } from '../framework/runtime/core/AudioManager';
+import { Physics2DManager } from '../framework/runtime/core/Physics2DManager';
+import { PlayerPrefs } from '../framework/runtime/core/PlayerPrefs';
+import { SceneLoader } from '../framework/runtime/core/SceneLoader';
+import { SubpackageLoader } from '../framework/runtime/core/SubpackageLoader';
+import { NodeUtil } from '../framework/runtime/utils/NodeUtil';
 import { AppFsm } from './AppFsm';
-import { NodeUtil } from '../../framework/runtime/utils/NodeUtil';
-import { SubpackageLoader } from '../../framework/runtime/core/SubpackageLoader';
+
+
 const { ccclass, property } = _decorator;
 
 export enum Language { AUTO, CN, EN };

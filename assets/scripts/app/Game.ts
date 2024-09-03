@@ -1,8 +1,9 @@
-﻿import { _decorator, AssetManager } from 'cc';
-import { State } from '../../framework/runtime/objs/fsm/State';
-import { GameFsm } from './GameFsm';
-import { NodeUtil } from '../../framework/runtime/utils/NodeUtil';
-import { App } from '../app/App';
+﻿import { _decorator, AssetManager } from "cc";
+import { State } from "../framework/runtime/objs/fsm/State";
+import { NodeUtil } from "../framework/runtime/utils/NodeUtil";
+import { App } from "./App";
+import { GameFsm } from "./GameFsm";
+
 const { ccclass, property } = _decorator;
 
 @ccclass("Game")

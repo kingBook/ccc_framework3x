@@ -1,6 +1,7 @@
 import { _decorator, Component, Node } from 'cc';
-import { Fsm } from '../../framework/runtime/objs/fsm/Fsm';
-import { Game } from '../game/Game';
+import { Fsm } from '../framework/runtime/objs/fsm/Fsm';
+import { Game } from './Game';
+
 const { ccclass, property } = _decorator;
 
 @ccclass('AppFsm')
