@@ -1,6 +1,7 @@
 
 import { _decorator, Component, Node, log, AudioClip, Vec3, PhysicsSystem2D } from 'cc';
 import { AudioSourcePlus } from '../framework/runtime/extensions/audio/AudioSourcePlus';
+import { App } from './App';
 const { ccclass, property } = _decorator;
 
 @ccclass('Test')

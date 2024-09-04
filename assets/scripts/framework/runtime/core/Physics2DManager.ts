@@ -1,5 +1,6 @@
 import { _decorator, Component, Node, Vec2, PhysicsSystem2D, EPhysics2DDrawFlags } from 'cc';
 import { Physics2DDebugDrag } from './Physics2DDebugDrag';
+import { NodeUtil } from '../utils/NodeUtil';
 const { ccclass, property } = _decorator;
 
 @ccclass('Physics2DManager')
@@ -22,9 +23,7 @@ export class Physics2DManager extends Component {
                                                       EPhysics2DDrawFlags.Shape;
         }
         if(this._enableDebugDrag){
-            let physics2DDebugDragNode = new Node(Physics2DDebugDrag.name);
-            physics2DDebugDragNode.addComponent(Physics2DDebugDrag);
-            physics2DDebugDragNode.parent = this.node;
+            NodeUtil.addNodeComponent(Physics2DDebugDrag,this.node);
         }
     }
     

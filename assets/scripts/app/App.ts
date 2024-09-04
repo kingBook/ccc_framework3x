@@ -42,7 +42,7 @@ export class App extends Component {
 
     /** 应用的语言 CN | EN */
     public get language(): Language { return this._language; }
-   // public get physics2DManager(): Physics2DManager { return this._physics2DManager; }
+    public get physics2DManager(): Physics2DManager { return this._physics2DManager; }
     public get audioManager(): AudioManager { return this._audioManager; }
     /** 场景加载器 */
     public get sceneLoader(): SceneLoader { return this._sceneLoader; }
@@ -80,14 +80,13 @@ export class App extends Component {
         this.node.emit(App.CHANGED_LANGUAGE, this._language);
     }
 
-
     protected onLoad(): void {
         App.s_instance = this;
         this._fsm = NodeUtil.addNodeComponent(AppFsm, this.node);
 
         this.addOpenCount();
 
-        if (this._language == Language.AUTO) {
+        if (this._language === Language.AUTO) {
             this.initLanguage();
         }
 
