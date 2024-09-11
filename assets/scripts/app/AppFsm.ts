@@ -7,7 +7,7 @@ const { ccclass, property } = _decorator;
 @ccclass('AppFsm')
 export class AppFsm extends Fsm {
     
-    protected onLoad(): void {
+    protected start(): void {
         this.addState(Game);
         this.init();
         this.changeStateTo(Game);
