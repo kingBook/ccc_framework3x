@@ -1,6 +1,7 @@
-import { _decorator, Component, Node, ProgressBar, Label, director, view, Vec3, clamp01, RichText } from 'cc';
+import { _decorator, Component, Node, ProgressBar, Label, director, view, Vec3, clamp01, RichText, Scene, Canvas, NodeEventType, Event } from 'cc';
 const { ccclass, property } = _decorator;
 
+/** 显示在屏幕中间的进度条（用于显示加载场景、子包的进度） */
 @ccclass('SceneProgressBar')
 export class SceneProgressBar extends Component {
 
@@ -9,22 +10,6 @@ export class SceneProgressBar extends Component {
 
     @property({ type: RichText, visible: true })
     private _richText: RichText;
-
-    protected onEnable(): void {
-        //当前节点不在Canvas内，每次激活重新计算大小和缩放
-        this.resize();
-    }
-
-    protected update(): void {
-        this.resize();
-    }
-
-    private resize(): void {
-        let visibleSize = view.getVisibleSize();
-        this.node.setPosition(visibleSize.width * 0.5, visibleSize.height * 0.5);
-        let scale = visibleSize.width / view.getDesignResolutionSize().x;
-        this.node.setScale(new Vec3(scale, scale, scale));
-    }
 
     /**
      * 设置显示的进度
@@ -44,6 +29,24 @@ export class SceneProgressBar extends Component {
         if (this._richText) {
             this._richText.string = textString;
         }
+    }
+
+    private setToTop(): void {
+        this.node.setSiblingIndex(this.node.parent.children.length - 1);
+    }
+
+    private onActiveInHierachyChanged(event: Node): void {
+        if (this.node.active) {
+            this.setToTop();
+        }
+    }
+
+    protected onLoad(): void {
+        this.node.on(Node.EventType.ACTIVE_IN_HIERARCHY_CHANGED, this.onActiveInHierachyChanged, this);
+    }
+
+    protected onDestroy(): void {
+        this.node.off(Node.EventType.ACTIVE_IN_HIERARCHY_CHANGED, this.onActiveInHierachyChanged, this);
     }
 }
 

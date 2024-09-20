@@ -4,6 +4,7 @@ import { Game } from './Game';
 
 const { ccclass, property } = _decorator;
 
+/** 整个 App 的有限状态机 */
 @ccclass('AppFsm')
 export class AppFsm extends Fsm {
     

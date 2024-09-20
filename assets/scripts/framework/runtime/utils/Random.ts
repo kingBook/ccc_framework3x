@@ -1,3 +1,4 @@
+/** 随机工具类 */
 export class Random {
 
     /** 返回 [0,1) 的随机浮点数 */
@@ -11,7 +12,7 @@ export class Random {
     }
 
     /** 返回随机的1或-1 */
-    public static get wave(): number {
+    public static get sign(): number {
         return Math.random() < 0.5 ? 1 : -1;
     }
 
@@ -37,52 +38,36 @@ export class Random {
         return Math.random() * (max - min) + min;
     }
 
-    /** 随机打乱一个数组的所有元素，并返回一个打乱后的新数组*/
-    public static randomArrayElements(array: any[]): any[] {
-        let len = array.length;
-        let randomIndices = Random.getRandomUniqueIntList(0, len, len);
-        let tempArray = [];
-        for (let i = 0; i < len; i++) {
-            let randomIndex = randomIndices[i];
-            tempArray[i] = array[randomIndex];
+    /**
+     * 获取一个随机的索引数组(索引不重复，可以是负数)，索引值区间为：[minInt, maxInt]
+     * @param minInt 整数，索引最小值
+     * @param maxInt 整数，索引最大值
+     * @returns 
+     */
+    public static getRandomizeIndexes(minInt: number, maxInt: number): number[] {
+        minInt |= 0, maxInt |= 0;
+        let indexes: number[] = [];
+        for (let i = minInt; i <= maxInt; i++) {
+            indexes.push(i);
         }
-        return tempArray;
+        Random.randomizeArray(indexes);
+        return indexes;
     }
 
-    /**
-     * 返回一个指定长度的随机int数组，数组元素范围是在[min,max)区间内(包括min,排除max)不重复的整数。
-     * 注意：参数length的取值范围必须在[1,max-min]区间内，length小于1时取值：1，length大于max-min时取值：max-min。
-     * 例：
-     * ```
-     * getRandomUniqueIntList(0,10,10); //返回元素在[0,10)之间，长度为10的数组
-     * ```
-     * @param min int
-     * @param max int
-     * @param length int
-     */
-    public static getRandomUniqueIntList(min: number, max: number, length: number): number[] {
-        min |= 0;
-        max |= 0;
-        length |= 0;
-
-        let sourceLength = max - min;
-        length = Math.min(Math.max(length, 1), sourceLength);
-
-        let results = [];
-
-        let sourceList = [];
-        let i = 0;
-        for (i = 0; i < sourceLength; i++) {
-            sourceList[i] = min + i;
+    /** 随机化的一个数组 */
+    public static randomizeArray(collection: any[]): void;
+    /** 随机化的一个数组 */
+    public static randomizeArray(collection: any[], length: number): void;
+    public static randomizeArray(collection: any[], length?: number): void {
+        if (length === undefined) {
+            length = collection.length;
         }
-
-        let randomIndex = 0;
-        for (i = 0; i < length; i++) {
-            randomIndex = Random.rangeInt(0, sourceList.length);
-            results[i] = sourceList[randomIndex];
-            sourceList.splice(randomIndex, 1);
+        for (let i = 0; i < length; i++) {
+            let randomIndex = Random.rangeInt(0, length);
+            let val = collection[i];
+            collection[i] = collection[randomIndex];
+            collection[randomIndex] = val;
         }
-        return results;
     }
 
 }

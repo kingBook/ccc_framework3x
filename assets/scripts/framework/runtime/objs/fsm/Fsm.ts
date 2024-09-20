@@ -5,6 +5,7 @@ import { StateDefault } from "./StateDefault";
 
 const { ccclass, property } = _decorator;
 
+/** 有限状态机抽象类 */
 @ccclass("Fsm")
 export abstract class Fsm extends Component {
 
@@ -68,19 +69,13 @@ export abstract class Fsm extends Component {
         // 状态进入
         this._currentState.onStateEnter(this);
     }
-
-    public onUpdate(): void {
+    
+    protected update(dt: number): void {
         this._currentState.onStateUpdate(this);
     }
 
-    public onLateUpdate(): void {
+    protected lateUpdate(dt: number): void {
         this._currentState.onStateLateUpdate(this);
-    }
-
-    public onDestroy(): void {
-        //this._currentState = undefined;
-        //this._onStateChanged = undefined;
-        //this._states = undefined;
     }
 
 }

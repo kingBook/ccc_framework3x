@@ -10,7 +10,7 @@ const { ccclass, property } = _decorator;
 @ccclass('LevelFsm')
 export class LevelFsm extends Fsm {
 
-    onAwake(): void {
+    protected start(): void {
         this.addState(StateLevelStart);
         this.addState(StateLevelRunning);
         this.addState(StateLevelVictory);

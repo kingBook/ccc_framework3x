@@ -5,9 +5,11 @@ import { StateGameTitle } from './StateGameTitle';
 
 const { ccclass, property } = _decorator;
 
+/** Game 的有限状态机 */
 @ccclass('GameFsm')
 export class GameFsm extends Fsm {
-    onLoad(): void {
+    
+    protected start(): void {
         this.addState(StateGameTitle);
         this.addState(StateGameLevel);
         this.init();

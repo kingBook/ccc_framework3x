@@ -3,6 +3,7 @@ import { PlayerPrefs } from './PlayerPrefs';
 import { AudioSourcePlus } from '../extensions/audio/AudioSourcePlus';
 const { ccclass, property } = _decorator;
 
+/** 音频管理器 */
 @ccclass('AudioManager')
 export class AudioManager extends Component {
 

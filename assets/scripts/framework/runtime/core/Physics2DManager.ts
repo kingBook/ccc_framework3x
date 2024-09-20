@@ -3,6 +3,7 @@ import { Physics2DDebugDrag } from './Physics2DDebugDrag';
 import { NodeUtil } from '../utils/NodeUtil';
 const { ccclass, property } = _decorator;
 
+/** 物理2D管理器 */
 @ccclass('Physics2DManager')
 export class Physics2DManager extends Component {
 

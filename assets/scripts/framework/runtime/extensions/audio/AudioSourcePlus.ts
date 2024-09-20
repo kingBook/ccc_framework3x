@@ -5,6 +5,7 @@ const { ccclass, property } = _decorator;
 
 // AudioSource源码地址：https://github.com/cocos/cocos-engine/blob/v3.8.5/cocos/audio/audio-source.ts
 
+/** 扩展原 AudioSource 组件，加入全局的静音、音量缩放功能 */
 @ccclass('AudioSourcePlus')
 export class AudioSourcePlus extends AudioSource {
 

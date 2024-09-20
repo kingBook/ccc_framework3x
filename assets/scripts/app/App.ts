@@ -13,6 +13,11 @@ const { ccclass, property } = _decorator;
 
 export enum Language { AUTO, CN, EN };
 
+/**
+ * 整个 App 的单例
+ * @example 
+ * 调用 App.instance 访问该类的实例
+ */
 @ccclass('App')
 export class App extends Component {
 

@@ -2,6 +2,7 @@ import { _decorator, Component, Node, assetManager, AssetManager, director } fro
 import { SceneProgressBar } from './SceneProgressBar';
 const { ccclass, property } = _decorator;
 
+/** 子包加载器 */
 @ccclass('SubpackageLoader')
 export class SubpackageLoader extends Component {
 
@@ -17,11 +18,9 @@ export class SubpackageLoader extends Component {
      * 加载子包
      * @param subpackageName 子包名称
      * @param progressVisible 默认为 true，是否显示进度条
-     * @param isDestroyCurrentSceneChildren 默认为 true，是否删除当前逻辑场景的所有非常驻节点
      * @param completeCallback 加载完成时的回调函数，格式：(error:Error,bundle:AssetManager.Bundle):void
      */
-    public loadSubpackage(subpackageName: string, progressVisible: boolean = true, isDestroyCurrentSceneChildren: boolean = true, completeCallback?: (error: Error, bundle: AssetManager.Bundle) => void): void {
-        if (isDestroyCurrentSceneChildren) this.destroyCurrentLogicSceneChildren(false);
+    public loadSubpackage(subpackageName: string, progressVisible: boolean = true, completeCallback?: (error: Error, bundle: AssetManager.Bundle) => void): void {
         if (progressVisible) {
             this._subpackageName = subpackageName;
             if (this._sceneProgressBar) {
@@ -59,18 +58,6 @@ export class SubpackageLoader extends Component {
         }
     }
 
-    private destroyCurrentLogicSceneChildren(isDestroyPersistRootNode: boolean) {
-        let scene = director.getScene();
-        if (scene) {
-            let children = scene.children;
-            let i = children.length;
-            while (--i >= 0) {
-                let child = children[i];
-                if (!isDestroyPersistRootNode && director.isPersistRootNode(child)) continue;
-                child.destroy();
-            }
-        }
-    }
 }
 
 

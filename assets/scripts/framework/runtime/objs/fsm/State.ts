@@ -4,6 +4,7 @@ import { IState } from "./IState";
 
 const { ccclass, property } = _decorator;
 
+/** 状态基类 */
 @ccclass("State")
 export abstract class State extends Component implements IState {
 
