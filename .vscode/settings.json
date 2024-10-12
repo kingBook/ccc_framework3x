@@ -29,12 +29,18 @@
 	"files.encoding": "utf8bom",
 	"files.eol": "\n",
 	"workbench.colorCustomizations": {
-		"[Default Light+]": {
-			"activityBar.background":"#dddddd",
-			"activityBar.foreground":"#333333"
-		},
-		"[One Monokai]": {
-			"editorHoverWidget.highlightForeground":"#2aaaff"
-		}
-	}
+        "[Default Light+]": {
+            "activityBar.background": "#dddddd",
+            "activityBar.foreground": "#333333"
+        },
+        "[One Monokai]": {
+            "editorHoverWidget.highlightForeground": "#2aaaff",
+			"editorLineNumber.foreground": "#818181"
+        }
+    },
+	"editor.semanticTokenColorCustomizations":{
+        "[One Monokai]": {
+            "enabled": true
+        }
+    },
 }
