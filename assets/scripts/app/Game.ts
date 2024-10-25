@@ -17,8 +17,8 @@ export class Game extends State {
     public onStateEnter(): void {
         this._fsm = NodeUtil.addNodeComponent(GameFsm, this.node);
 
-        App.instance.subpackageLoader.loadSubpackage("bundleLevel1", true, (error: Error, bundle: AssetManager.Bundle): void => {
-            App.instance.sceneLoader.load("bundleLevel1/level_1");
+        App.instance.subpackageLoader.loadSubpackage("level1", true, (error: Error, bundle: AssetManager.Bundle): void => {
+            App.instance.sceneLoader.load("level1/level_1");
 
         });
     }
