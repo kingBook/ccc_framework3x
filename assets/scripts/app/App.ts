@@ -2,11 +2,11 @@
 import { _decorator, Component, game, Enum, sys, director } from 'cc';
 import { AudioManager } from '../framework/runtime/core/AudioManager';
 import { Physics2DManager } from '../framework/runtime/core/Physics2DManager';
-import { PlayerPrefs } from '../framework/runtime/core/PlayerPrefs';
 import { SceneLoader } from '../framework/runtime/core/SceneLoader';
 import { SubpackageLoader } from '../framework/runtime/core/SubpackageLoader';
 import { NodeUtil } from '../framework/runtime/utils/NodeUtil';
 import { AppFsm } from './AppFsm';
+import { PlayerPrefs } from '../framework/runtime/utils/PlayerPrefs';
 
 
 const { ccclass, property } = _decorator;
@@ -100,6 +100,6 @@ export class App extends Component {
     }
 
     protected onDestroy(): void {
-        App.s_instance = undefined;
+        App.s_instance = null;
     }
 }

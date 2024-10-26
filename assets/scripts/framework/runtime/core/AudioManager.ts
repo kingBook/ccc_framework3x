@@ -1,6 +1,6 @@
 import { _decorator, Component, AudioClip, Node, Vec3, director, clamp01, AudioSource } from 'cc';
-import { PlayerPrefs } from './PlayerPrefs';
 import { AudioSourcePlus } from '../extensions/audio/AudioSourcePlus';
+import { PlayerPrefs } from '../utils/PlayerPrefs';
 const { ccclass, property } = _decorator;
 
 /** 音频管理器 */
